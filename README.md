@@ -1,5 +1,5 @@
-# myFavoriteMovies
+# whatToWatch
 
-## A website for creating a collection of your favorite movies so you never forget what you like.
+## A website for getting suggestions on what movies to watch.
 
 _Under development_
