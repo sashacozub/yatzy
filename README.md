@@ -1,4 +1,4 @@
-# whatToWatch
+# WhatToWatchTonight
 
 ## A website for getting suggestions on what movies to watch.
 
