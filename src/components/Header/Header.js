@@ -1,8 +1,8 @@
+import React from 'react';
+
 import { Button } from '@mui/material';
 
 import './Header.css';
-
-import React from 'react';
 
 const Header = () => {
   return (
