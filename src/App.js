@@ -21,11 +21,11 @@ function App() {
   const getMovieFromList = () => {
     const randomNumber = Math.floor(Math.random() * moviesList.length);
     const randomMovie = moviesList[randomNumber];
-    setCurrentMovie(randomMovie);
     console.log(randomNumber);
-    console.log(randomMovie);
-    console.log(currentMovie);
     setMoviesList(moviesList.filter((movie) => movie.id !== randomMovie.id));
+    console.log(randomMovie);
+    setCurrentMovie(randomMovie);
+    // return randomMovie;
   };
 
   return (
@@ -33,6 +33,7 @@ function App() {
       <Header />
       <button onClick={getMovieFromList}>random</button>
       <button onClick={() => console.log(moviesList)}>movies</button>
+      <button onClick={() => console.log(currentMovie)}>what is current</button>
       {/* <MovieSuggestion movie={} /> */}
     </main>
   );
