@@ -1,5 +1,5 @@
-# WhatToWatchTonight
+# Yatzy
 
-## A website for getting suggestions on what movies to watch.
+## A website for playing famous Yatzy game.
 
 _Under development_
