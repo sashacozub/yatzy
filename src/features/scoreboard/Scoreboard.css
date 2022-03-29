@@ -1,0 +1,19 @@
+.scoreboard-ctr {
+  margin: 50px;
+  background-color: wheat;
+  text-align: center;
+  padding: 20px;
+  padding-top: 0;
+  max-height: 100%;
+}
+
+table {
+  border: 1px solid black;
+}
+
+td {
+  border: 1px solid black;
+  padding: 5px;
+  max-width: 150px;
+  font-size: 0.9rem;
+}

@@ -1,0 +1,7 @@
+.main-ctr {
+  background-color: #0d5545;
+  height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
