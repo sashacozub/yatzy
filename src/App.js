@@ -8,7 +8,9 @@ import Scoreboard from './features/scoreboard/Scoreboard';
 function App() {
   return (
     <main className='main-ctr'>
-      <Playarea />
+      <div className='main-ctr-divider'>
+        <Playarea />
+      </div>
       <Scoreboard />
     </main>
   );

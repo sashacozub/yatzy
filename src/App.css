@@ -1,7 +1,14 @@
 .main-ctr {
   background-color: #0d5545;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.main-ctr-divider {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
 }
