@@ -5,51 +5,58 @@ import './Playarea.css';
 const allDice = [
   {
     id: 1,
-    value: 1,
+    value: 0,
+    saved: false,
   },
   {
     id: 2,
-    value: 1,
+    value: 0,
+    saved: false,
   },
   {
     id: 3,
-    value: 1,
+    value: 0,
+    saved: false,
   },
   {
     id: 4,
-    value: 1,
+    value: 0,
+    saved: false,
   },
   {
     id: 5,
-    value: 1,
+    value: 0,
+    saved: false,
   },
 ];
 
 const Playarea = () => {
-  const [rolledDice, setRolledDice] = useState(allDice);
-  const [savedDice, setSavedDice] = useState([]);
+  const [dice, setDice] = useState(allDice);
 
   const [currentPlayer, setCurrentPlayer] = useState(1);
   const [attemptsLeft, setAttemptsLeft] = useState(3);
 
   const rollDice = () => {
-    let rolledResults = [0, 0, 0, 0, 0];
+    console.log(dice);
+    for (let i = 0; i < dice.length; i++) {
+      const randomValue = Math.floor(Math.random() * 6) + 1;
 
-    for (let i = 1; i === rolledResults.length; i++) {
-      const randomNumber = Math.floor(Math.random() * 6) + 1;
-      rolledResults[i] = randomNumber;
-    }
-
-    if (attemptsLeft > 0) {
-      setAttemptsLeft((prev) => prev - 1);
-    } else {
-      setAttemptsLeft(3);
-      currentPlayer === 1 ? setCurrentPlayer(2) : setCurrentPlayer(1);
+      if (dice[i].saved === false) {
+        let newDice = [...dice];
+        newDice[i].value = randomValue;
+        setDice(newDice);
+      }
     }
   };
 
-  const saveDice = (e) => {
-    console.log(e.target);
+  const handleDiceSaving = ({ target }) => {
+    for (let i = 0; i < dice.length; i++) {
+      if (dice[i].id === Number(target.id)) {
+        let newDice = [...dice];
+        newDice[i].saved = !newDice[i].saved;
+        setDice(newDice);
+      }
+    }
   };
 
   return (
@@ -64,12 +71,27 @@ const Playarea = () => {
       </div>
       <div className='dice-area'>
         <h5>Your roll:</h5>
-        {rolledDice.map((dice) => {
-          return <button onClick={saveDice}></button>;
+        {dice.map((die) => {
+          return (
+            !die.saved && (
+              <button key={die.id} id={die.id} onClick={handleDiceSaving}>
+                {die.value}
+              </button>
+            )
+          );
         })}
       </div>
       <div className='saved-dice-area'>
         <h5>Saved dice:</h5>
+        {dice.map((die) => {
+          return (
+            die.saved && (
+              <button key={die.id} id={die.id} onClick={handleDiceSaving}>
+                {die.value}
+              </button>
+            )
+          );
+        })}
       </div>
     </section>
   );
