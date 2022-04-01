@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { setDice } from './playareaSlice';
 
 import './Playarea.css';
 
@@ -34,22 +35,26 @@ const allDice = [
 const Playarea = () => {
   // const [dice, setDice] = useState(allDice);
   const dice = useSelector((state) => state.playarea.dice.allDice);
+  const dispatch = useDispatch();
 
   const [currentPlayer, setCurrentPlayer] = useState(1);
   const [attemptsLeft, setAttemptsLeft] = useState(3);
 
   const rollDice = () => {
     console.log(dice);
-    for (let i = 0; i < dice.length; i++) {
+    let newDice = [...dice];
+
+    for (let i = 0; i < newDice.length; i++) {
       const randomValue = Math.floor(Math.random() * 6) + 1;
 
-      if (dice[i].saved === false) {
-        let newDice = [...dice];
+      if (newDice[i].saved === false) {
+        // let newDice = [...dice];
         newDice[i].value = randomValue;
         // setDice(newDice);
       }
     }
 
+    dispatch(setDice(newDice));
     setAttemptsLeft((prev) => prev - 1);
   };
 

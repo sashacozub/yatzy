@@ -11,7 +11,13 @@ const initialState = {
 export const playareaSlice = createSlice({
   name: 'playarea',
   initialState,
-  reducers: {},
+  reducers: {
+    setDice: (state, action) => {
+      state.dice.allDice = action.playload;
+    },
+  },
 });
+
+export const { setDice } = playareaSlice.actions;
 
 export default playareaSlice.reducer;
