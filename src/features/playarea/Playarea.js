@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 import './Playarea.css';
 
@@ -31,7 +32,8 @@ const allDice = [
 ];
 
 const Playarea = () => {
-  const [dice, setDice] = useState(allDice);
+  // const [dice, setDice] = useState(allDice);
+  const dice = useSelector((state) => state.playarea.dice.allDice);
 
   const [currentPlayer, setCurrentPlayer] = useState(1);
   const [attemptsLeft, setAttemptsLeft] = useState(3);
@@ -44,9 +46,11 @@ const Playarea = () => {
       if (dice[i].saved === false) {
         let newDice = [...dice];
         newDice[i].value = randomValue;
-        setDice(newDice);
+        // setDice(newDice);
       }
     }
+
+    setAttemptsLeft((prev) => prev - 1);
   };
 
   const handleDiceSaving = ({ target }) => {
@@ -54,9 +58,14 @@ const Playarea = () => {
       if (dice[i].id === Number(target.id)) {
         let newDice = [...dice];
         newDice[i].saved = !newDice[i].saved;
-        setDice(newDice);
+        // setDice(newDice);
       }
     }
+  };
+
+  const handlePlayerChange = () => {
+    currentPlayer === 1 ? setCurrentPlayer(2) : setCurrentPlayer(1);
+    setAttemptsLeft(3);
   };
 
   return (
@@ -66,6 +75,9 @@ const Playarea = () => {
       <div className='roll-btn-area'>
         <button disabled={attemptsLeft === 0} onClick={rollDice}>
           Roll the dice!
+        </button>
+        <button disabled={attemptsLeft > 0} onClick={handlePlayerChange}>
+          Next player
         </button>
         <h4>{attemptsLeft} attempts left</h4>
       </div>
