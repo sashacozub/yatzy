@@ -37,8 +37,8 @@ const Playarea = () => {
   const dice = useSelector((state) => state.playarea.dice.allDice);
   const dispatch = useDispatch();
 
-  const [currentPlayer, setCurrentPlayer] = useState(1);
-  const [attemptsLeft, setAttemptsLeft] = useState(3);
+  // const [currentPlayer, setCurrentPlayer] = useState(1);
+  // const [attemptsLeft, setAttemptsLeft] = useState(3);
 
   const rollDice = () => {
     console.log(dice);
