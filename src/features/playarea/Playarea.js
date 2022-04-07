@@ -37,25 +37,27 @@ const Playarea = () => {
   const dice = useSelector((state) => state.playarea.dice.allDice);
   const dispatch = useDispatch();
 
-  // const [currentPlayer, setCurrentPlayer] = useState(1);
-  // const [attemptsLeft, setAttemptsLeft] = useState(3);
+  const [currentPlayer, setCurrentPlayer] = useState(1);
+  const [attemptsLeft, setAttemptsLeft] = useState(3);
 
   const rollDice = () => {
     console.log(dice);
-    let newDice = [...dice];
+    let newDice = dice.map((die) => {
+      return { ...die };
+    });
 
-    for (let i = 0; i < newDice.length; i++) {
-      const randomValue = Math.floor(Math.random() * 6) + 1;
+    // for (let i = 0; i < newDice.length; i++) {
+    //   const randomValue = Math.floor(Math.random() * 6) + 1;
 
-      if (newDice[i].saved === false) {
-        // let newDice = [...dice];
-        newDice[i].value = randomValue;
-        // setDice(newDice);
-      }
-    }
-
-    dispatch(setDice(newDice));
-    setAttemptsLeft((prev) => prev - 1);
+    //   if (newDice[i].saved === false) {
+    //     let newDice = [...dice];
+    //     newDice[i].value = randomValue;
+    //     setDice(newDice);
+    //   }
+    // }
+    console.log(newDice);
+    // dispatch(setDice(newDice));
+    // setAttemptsLeft((prev) => prev - 1);
   };
 
   const handleDiceSaving = ({ target }) => {
