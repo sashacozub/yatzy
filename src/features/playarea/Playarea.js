@@ -4,60 +4,31 @@ import { setDice } from './playareaSlice';
 
 import './Playarea.css';
 
-const allDice = [
-  {
-    id: 1,
-    value: 0,
-    saved: false,
-  },
-  {
-    id: 2,
-    value: 0,
-    saved: false,
-  },
-  {
-    id: 3,
-    value: 0,
-    saved: false,
-  },
-  {
-    id: 4,
-    value: 0,
-    saved: false,
-  },
-  {
-    id: 5,
-    value: 0,
-    saved: false,
-  },
-];
-
 const Playarea = () => {
-  // const [dice, setDice] = useState(allDice);
-  const dice = useSelector((state) => state.playarea.dice.allDice);
+  const dice = useSelector((state) => state.playarea.dice);
   const dispatch = useDispatch();
 
   const [currentPlayer, setCurrentPlayer] = useState(1);
   const [attemptsLeft, setAttemptsLeft] = useState(3);
 
   const rollDice = () => {
-    console.log(dice);
     let newDice = dice.map((die) => {
       return { ...die };
     });
 
-    // for (let i = 0; i < newDice.length; i++) {
-    //   const randomValue = Math.floor(Math.random() * 6) + 1;
+    console.log('old state: ', dice);
 
-    //   if (newDice[i].saved === false) {
-    //     let newDice = [...dice];
-    //     newDice[i].value = randomValue;
-    //     setDice(newDice);
-    //   }
-    // }
-    console.log(newDice);
-    // dispatch(setDice(newDice));
-    // setAttemptsLeft((prev) => prev - 1);
+    for (let i = 0; i < newDice.length; i++) {
+      const randomValue = Math.floor(Math.random() * 6) + 1;
+
+      if (newDice[i].saved === false) {
+        newDice[i].value = randomValue;
+      }
+    }
+
+    dispatch(setDice(newDice));
+    console.log('temp state: ', newDice);
+    // console.log('new state: ', dice);
   };
 
   const handleDiceSaving = ({ target }) => {

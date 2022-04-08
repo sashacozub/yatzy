@@ -3,9 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { allDice } from '../../utils';
 
 const initialState = {
-  dice: {
-    allDice,
-  },
+  dice: allDice,
 };
 
 export const playareaSlice = createSlice({
@@ -13,7 +11,7 @@ export const playareaSlice = createSlice({
   initialState,
   reducers: {
     setDice: (state, action) => {
-      state.dice.allDice = action.playload;
+      state.dice.splice(0, state.dice.length, ...action.payload);
     },
   },
 });
