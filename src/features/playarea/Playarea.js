@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+
 import { setDice } from './playareaSlice';
 
 import './Playarea.css';
@@ -27,8 +28,6 @@ const Playarea = () => {
     }
 
     dispatch(setDice(newDice));
-    console.log('temp state: ', newDice);
-    // console.log('new state: ', dice);
   };
 
   const handleDiceSaving = ({ target }) => {
@@ -36,7 +35,7 @@ const Playarea = () => {
       if (dice[i].id === Number(target.id)) {
         let newDice = [...dice];
         newDice[i].saved = !newDice[i].saved;
-        // setDice(newDice);
+        setDice(newDice);
       }
     }
   };

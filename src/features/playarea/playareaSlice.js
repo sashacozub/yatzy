@@ -11,7 +11,7 @@ export const playareaSlice = createSlice({
   initialState,
   reducers: {
     setDice: (state, action) => {
-      state.dice.splice(0, state.dice.length, ...action.payload);
+      state.dice = action.payload;
     },
   },
 });
