@@ -11,36 +11,57 @@ const Playarea = () => {
 
   const [currentPlayer, setCurrentPlayer] = useState(1);
   const [attemptsLeft, setAttemptsLeft] = useState(3);
+  const [combinationPicked, setCombinationPicked] = useState(false);
 
   const rollDice = () => {
+    // Make a copy of dice state to change on rolling
     let newDice = dice.map((die) => {
       return { ...die };
     });
 
-    console.log('old state: ', dice);
-
     for (let i = 0; i < newDice.length; i++) {
       const randomValue = Math.floor(Math.random() * 6) + 1;
 
+      // Only change value of die if it was not saved
       if (newDice[i].saved === false) {
         newDice[i].value = randomValue;
       }
     }
 
     dispatch(setDice(newDice));
+
+    // Reduce the amount of rolls left for current player
+    setAttemptsLeft((prev) => prev - 1);
   };
 
   const handleDiceSaving = ({ target }) => {
-    for (let i = 0; i < dice.length; i++) {
-      if (dice[i].id === Number(target.id)) {
-        let newDice = [...dice];
+    // Make a copy of dice state to change on rolling
+    let newDice = dice.map((die) => {
+      return { ...die };
+    });
+
+    for (let i = 0; i < newDice.length; i++) {
+      if (newDice[i].id === Number(target.id)) {
         newDice[i].saved = !newDice[i].saved;
-        setDice(newDice);
       }
     }
+
+    dispatch(setDice(newDice));
   };
 
   const handlePlayerChange = () => {
+    let resetDice = dice.map((die) => {
+      return { ...die };
+    });
+
+    for (let i = 0; i < resetDice.length; i++) {
+      if (resetDice[i].saved === true) {
+        resetDice[i].saved = !resetDice[i].saved;
+      }
+    }
+
+    dispatch(setDice(resetDice));
+
     currentPlayer === 1 ? setCurrentPlayer(2) : setCurrentPlayer(1);
     setAttemptsLeft(3);
   };
