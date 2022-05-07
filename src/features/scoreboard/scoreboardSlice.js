@@ -1,19 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { combinations } from '../../utils';
+import { scoreTable } from './scoreTable';
 
 const initialState = {
   scoreboard: {
-    playerOne: {
-      name: '',
-      currentScore: 0,
-      combinations,
-    },
-    playerTwo: {
-      name: '',
-      currentScore: 0,
-      combinations,
-    },
+    scoreTable,
   },
 };
 

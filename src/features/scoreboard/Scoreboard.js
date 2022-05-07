@@ -3,10 +3,10 @@ import { useSelector } from 'react-redux';
 
 import './Scoreboard.css';
 
-import { rows } from './scoreTable';
+import { scoreTable } from './scoreTable';
 
 const Scoreboard = () => {
-  const score = useSelector((state) => state.scoreboard.scoreboard);
+  const score = useSelector((state) => state.scoreboard.scoreboard.scoreTable);
 
   return (
     <section className='scoreboard-ctr'>
@@ -21,20 +21,32 @@ const Scoreboard = () => {
           </tr>
         </thead>
         <tbody>
-          {rows.map((row) => {
+          {score.map((combo) => {
             return (
-              <tr key={row.id}>
-                <td>{row.displayName}</td>
-                <td>{row.points}</td>
-                <td>{score.playerOne.combinations[row.combination]}</td>
-                <td>{score.playerTwo.combinations[row.combination]}</td>
+              <tr key={combo.id}>
+                <td>{combo.displayName}</td>
+                <td>{combo.pointsInfo}</td>
+                <td>
+                  <button>{combo.playerOne.score}</button>
+                </td>
+                <td>
+                  <button>{combo.playerTwo.score}</button>
+                </td>
               </tr>
             );
           })}
           <tr>
             <td colSpan={2}>TOTAL:</td>
-            <td>{score.playerOne.currentScore}</td>
-            <td>{score.playerTwo.currentScore}</td>
+            <td>
+              {score
+                .map((combo) => combo.playerOne.score)
+                .reduce((a, b) => a + b)}
+            </td>
+            <td>
+              {score
+                .map((combo) => combo.playerTwo.score)
+                .reduce((a, b) => a + b)}
+            </td>
           </tr>
         </tbody>
       </table>
